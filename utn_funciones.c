@@ -7,8 +7,28 @@
 
 #include "utn_funciones.h"
 
-static int EsNumerica(char* cadena);
-static int GetInt(int* pResultado);
+static int EsNumerica(char* cadena)
+{
+	int retorno = 1;
+	
+	for()
+	{
+		
+	}
+
+}
+static int GetInt(int* pResultado)
+{
+	int retorno = -1;
+	char buffer[4096];
+	scanf("%s",buffer);
+	if(esNumerica (buffer))
+	{
+		retorno = 0;
+		*pResultado = atoi(buffer);
+	}
+	return retorno;
+}
 static int MyGets(char* cadena , int longitud);
 int utn_GetNumero(char* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos)
 {
