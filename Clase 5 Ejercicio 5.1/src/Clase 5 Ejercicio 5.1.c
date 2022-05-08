@@ -2,16 +2,21 @@
  ============================================================================
  Name        : 1.c
  Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Ejercicio 5-1:
+ Pedir el ingreso de 5 números. Mostrarlos y calcular y
+ mostrar la sumatoria de los mismos.
  ============================================================================
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-
+#include "funciones.h"
+#define TAM 5
 int main(void) {
-	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
+	setbuf(stdout, NULL);
+	int numero[TAM];
+	int suma;
+
+	suma = sumaArrays(numero, TAM);
+
+	printf("La suma de los numeros es: %d", suma);
+
 	return EXIT_SUCCESS;
 }
