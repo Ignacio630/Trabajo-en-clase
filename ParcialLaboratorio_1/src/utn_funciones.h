@@ -10,7 +10,7 @@ int myGets(char* , int );
 
 int PedirEntero(char [], char []);
 
-void PedirCadena(char [],char[]);
+void PedirCadena(char [],char []);
 
 int PedirFlotante(char []);
 

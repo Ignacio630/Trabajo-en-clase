@@ -1,18 +1,7 @@
 #include "utn_validaciones.h"
 
-void PedirCadena(char cadena[],char mensaje[])
-{
-	printf(mensaje);
-	scanf("%s",cadena);
-	while(!ValidarUnaCadena(cadena))
-	{
-		printf("Ups! a ocurrido un error!\n");
-		printf(mensaje);
-		scanf("%s",cadena);
-	}
-}
 
-int ValidarUnaCadena(char cadena[])
+int ValidarCadena(char cadena[])
 {
 	int retorno=1;
 	int len;
@@ -27,22 +16,6 @@ int ValidarUnaCadena(char cadena[])
 			}
 		}
 	}
-	return retorno;
-}
-
-int PedirEntero(char mensaje[], char mensajeError[])
-{
-	int retorno;
-	char numero[1000];
-	printf(mensaje);
-	scanf("%s",numero);
-	while(!ValidarNumero(numero))
-	{
-		printf("%s",mensajeError);
-		printf("%s", mensaje);
-		scanf("%s",numero);
-	}
-	retorno=atoi(numero);
 	return retorno;
 }
 
@@ -62,21 +35,7 @@ int ValidarNumero(char numero[])
 	}
 	return retorno;
 }
-int PedirFlotante(char mensaje[])
-{
-	int retorno;
-	char numero[1000];
-	printf(mensaje);
-	scanf("%s",numero);
-	while(!ValidarNumero(numero))
-	{
-		printf("Ups! a ocurrido un error! \n");
-		printf(mensaje);
-		scanf("%s",numero);
-	}
-	retorno=atof(numero);
-	return retorno;
-}
+
 int ValidarNumeroMinimoMaximo(int numero, int maximo, int minimo, char mensaje[])
 {
 	int retorno;

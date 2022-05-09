@@ -46,15 +46,18 @@ sProducto CargarUnProducto(stipoProducto listaTipos[], int tam)
 	printf("Ingrese el precio del producto: ");
 	scanf("%f", &unProducto.precio);
 
-
-
 	unProducto.estado=1;
 	return unProducto;
 }
 
 void MostrarUnProducto(sProducto unProducto, stipoProducto listaTipos)
 {
-	printf("%4d %-15s %6d %d %s %.2f\n", unProducto.idProducto, unProducto.descripcion, unProducto.nacionalidad, unProducto.idTipo, listaTipos.descripcionTipo, unProducto.precio);
+	printf("%4d %-15s %6d %d %s %.2f\n", unProducto.idProducto,
+										 unProducto.descripcion,
+										 unProducto.nacionalidad,
+										 unProducto.idTipo,
+										 listaTipos.descripcionTipo,
+										 unProducto.precio);
 
 }
 

@@ -1,13 +1,3 @@
-/*
- ============================================================================
- Name        : 2.c
- Author      : Nani Renato
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "Productos.h"

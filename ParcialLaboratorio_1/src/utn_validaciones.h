@@ -7,7 +7,7 @@
 #include <math.h>
 #include "utn_funciones.h"
 
-int ValidarUnaCadena(char []);
+int ValidarCadena(char []);
 
 int ValidarNumero(char []);
 
