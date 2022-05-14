@@ -11,14 +11,20 @@
 #define LIBRE 0
 #define OCUPADO 1
 #define TAM 5
+#define COMERCIAL 0
+#define PREMIUN 1
+#define EJECUTIVO 2
+#define	ACTIVO 0
+#define	DEMORADO 1
+#define CANCELADO -1
 
 struct{
 	int id;
 	char name[51];
 	char lastName[51];
 	float price;
-	char flycode[10];
 	int typePassenger;
+	char flycode[10];
 	int statusFlight;
 	int isEmpty;
 }typedef Passenger;
@@ -44,13 +50,13 @@ int initPassengers(Passenger*, int );
 * \return int Return (-1) if Error [Invalid length or NULL pointer or without
 free space] - (0) if Ok*/
 int addPassenger(Passenger* , int , int , char [], char [], float , int , char[]);
-int AltaPasajero(Passenger* , int);
 /** \brief find a Passenger by Id en returns the index position in array.
 * \param list Passenger*
 * \param len int
 * \param id int
 * \return Return passenger index position or (-1) if [Invalid length or NULL pointer received or passenger not found]
 */
+void menuTypePassenger();
 int findPassengerById(Passenger*, int,int);
 /** \brief Remove a Passenger by Id (put isEmpty Flag in 1)
 * \param list Passenger*
@@ -58,9 +64,9 @@ int findPassengerById(Passenger*, int,int);
 * \param id int
 * \return int Return (-1) if Error [Invalid length or NULL pointer or if can't find a passenger] - (0) if Ok
 */
+int modifyPassenger(Passenger*, int, int);
 int removePassenger(Passenger*, int, int);
-/** \brief Sort the elements in the array of passengers, the argument order
-indicate UP or DOWN order
+/** \brief Sort the elements in the array of passengers, the argument order indicate UP or DOWN order
 * \param list Passenger*
 * \param len int
 * \param order int [1] indicate UP - [0] indicate DOWN
@@ -76,7 +82,7 @@ int printPassenger(Passenger* );
 * \param length int
 * \return int
 */
-int AltaForzada(Passenger* , int);
+//int AltaForzada(Passenger* , int, sTypePassenger*);
 int printPassengers(Passenger* ,int);
 /** \brief Sort the elements in the array of passengers, the argument order indicate UP or DOWN order
 * \param list Passenger*

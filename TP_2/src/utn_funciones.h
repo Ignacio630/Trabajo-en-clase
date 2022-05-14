@@ -9,7 +9,7 @@
 
 int myGets(char* , int );
 
-int PedirEntero(char[] ,char[] ,char[]);
+int PedirEntero(char* ,char* ,char*);
 
 int PedirOpciones(char[] ,char[]);
 
@@ -21,7 +21,11 @@ int SumarArrays();
 
 void MostrarCadena(char []);
 
-int utn_GetEntero(int [],char [],char [],int ,int ,int );
+int utn_GetEntero(int* ,char* ,char* ,int ,int ,int );
+
+float utn_GetFlotante(float* ,char* ,char* ,int ,int ,int );
+
+char utn_GetString(char* , char* , char* , int );
 
 int ValidarCadena(char []);
 
