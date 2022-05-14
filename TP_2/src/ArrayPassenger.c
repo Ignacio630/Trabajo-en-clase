@@ -47,47 +47,62 @@ int addPassenger(Passenger* list, int len, int id, char name[], char lastName[],
 	int banderaLibre;
 	banderaLibre = FindFree(list, len);
 
-	if(banderaLibre != -1)
+	if(list != NULL && len >= 0)
 	{
-		for()
-		{
-			printf("Ingrese el nombre del pasajero: ");
-			scanf("%s", name);
-			fflush(stdin);
-			printf("Ingrese el apelido del pasajero: ");
-			fflush(stdin);
-			scanf("%s", lastName);
-			printf("Ingrese el precio del pasaje: ");
-			scanf("%f", &price);
-			printf("Ingrese el tipo de pasajero: ");
-			scanf("%d", &typePassenger);
-			printf("Ingrese el codigo de vuelo: ");
-			fflush(stdin);
-			scanf("%s", flycode);
-
-			list->id = incrementalID();
-
-			list->isEmpty = OCUPADO;
-
-		}
-
-		retorno = 1;
+		if(banderaLibre >= 0)
+			{
+				printf("Ingrese el nombre del pasajero: ");
+				scanf("%s", name);
+				fflush(stdin);
+				printf("Ingrese el apelido del pasajero: ");
+				fflush(stdin);
+				scanf("%s", lastName);
+				printf("Ingrese el precio del pasaje: ");
+				scanf("%f", &price);
+				printf("Ingrese el tipo de pasajero: ");
+				scanf("%d", &typePassenger);
+				printf("Ingrese el codigo de vuelo: ");
+				fflush(stdin);
+				scanf("%s", flycode);
+				list[banderaLibre].id= incrementalID();
+				list[banderaLibre].isEmpty = OCUPADO;
+				retorno = 0;
+			}
 	}
-
 	return retorno;
 }
-
+//int AltaForzada(Passenger* list, int len)
+//{
+//	int retorno;
+//	retorno=-1;
+//	list->name={{"Juan"},{"Maria"},{"Alberto"},{"Pedro"},{"Abril"}};
+//
+//
+//	return retorno;
+//}
 int printPassenger(Passenger* list)
 {
-	printf("estado:%d\n",list->isEmpty);
-	return 0;
+	int retorno;
+	retorno =-1;
+	if(list != NULL)
+	{
+		printf("%d",list->isEmpty);
+		retorno=0;
+	}
+	return retorno;
 }
 int printPassengers(Passenger* list,int len)
 {
 	int i;
+	system("cls");
+	puts("--------------------------------------------!INFORME PASAJEROS!----------------------------------------------");
+	puts("Id: \t Nombre \t Apellido\t Precio \t Clase \t Codigo de vuelo\n");
 	for(i=0;i<len;i++)
 	{
-		printf("id: %d estado:%d\n",list[i].id ,list[i].isEmpty);
+		if(list[i].isEmpty== OCUPADO)
+		{
+			printf("|%-6d |%-9s| |%-14s| %15.2f| %15d| %10s|\n",list[i].id ,list[i].name, list[i].lastName,list[i].price, list[i].typePassenger, list[i].flycode);
+		}
 	}
 	return 0;
 }

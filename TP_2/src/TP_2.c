@@ -9,18 +9,18 @@ int main(void)
 	initPassengers(pasajero, TAM);
 
 	do{
-		opciones = PedirOpciones("1.ALTA\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.SALIR\nElija una opcion: ", "Ups! Opcion invalida!!\n");
+		opciones = PedirOpciones("1.ALTA\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.ALTA FORZADA\n6.SALIR\nElija una opcion: ", "Ups! Opcion invalida!!\n");
 		switch (opciones)
 		{
 			case 1:
 				system("cls");
-				if(pasajero->isEmpty==LIBRE)
+				if(addPassenger(pasajero, TAM, pasajero->id, pasajero->name,pasajero->lastName,pasajero->price,pasajero->typePassenger,pasajero->flycode)==0)
 				{
-					addPassenger(pasajero, TAM, pasajero->id, pasajero->name,pasajero->lastName,pasajero->price,pasajero->typePassenger,pasajero->flycode);
+					puts("Se dio de alta satisfacctoriamente!!");
 				}
 				else
 				{
-					printf("No hay mas espacio\n");
+					puts("No hay mas espacio");
 				}
 				break;
 			case 2:
@@ -30,17 +30,27 @@ int main(void)
 				system("cls");
 				break;
 			case 4:
-				printPassengers(pasajero, TAM);
+				if(pasajero->isEmpty == OCUPADO)
+				{
+					printPassengers(pasajero, TAM);
+				}
+				else
+				{
+					puts("Haga al menos un alta para mostrar el informe");
+				}
 				system("pause");
 				break;
 			case 5:
-				printf("Gracias por usar mi app :)\n");
+
 				break;
 			default:
+			case 6:
+				printf("Gracias por usar mi app :)\n");
+				break;
 				printf("Ups! Opcion invalida!!\n");
 			break;
 		}
-	}while(opciones !=5);
+	}while(opciones !=6);
 
 
 

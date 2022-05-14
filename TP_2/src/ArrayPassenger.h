@@ -10,7 +10,7 @@
 
 #define LIBRE 0
 #define OCUPADO 1
-#define TAM 3
+#define TAM 5
 
 struct{
 	int id;
@@ -67,13 +67,16 @@ indicate UP or DOWN order
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 */
 int sortPassengers(Passenger* list, int, int);
-
+/// @brief print only one element of passengers array
+/// @param list Passenger*
+/// @return int return(-1) if Errir [NULL poinater] - (0) if ok
 int printPassenger(Passenger* );
 /** \brief print the content of passengers array
 * \param list Passenger*
 * \param length int
 * \return int
 */
+int AltaForzada(Passenger* , int);
 int printPassengers(Passenger* ,int);
 /** \brief Sort the elements in the array of passengers, the argument order indicate UP or DOWN order
 * \param list Passenger*
