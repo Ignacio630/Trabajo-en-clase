@@ -5,18 +5,25 @@ int main(void)
 	setbuf(stdout,NULL);
 
 	int opciones;
-	Passenger pasajero[TAM];
-
-	initPassengers(pasajero, TAM);
+	int banderaAlta = 0;
 	int contadorPasajeros=0;
+	Passenger pasajero[TAM];
+	Passenger listaForzada[TAM_F]={{0,"Abril","Danelón",100000,2,"oFsdD", ACTIVO},
+								   {1,"Emmanuel","Maciel",32000,0,"esFSD", DEMORADO},
+								   {2,"Federico","De Almeida",56000,1,"NsdFT", CANCELADO},
+								   {3,"Anger","Gonzales",19000,0,"oFsdD", ACTIVO},
+								   {4,"Luciano","Giangaspro",38000.43,1,"esFSD", DEMORADO}};
+	initPassengers(pasajero, TAM);
+
 	do{
 		opciones = PedirOpciones("1.ALTA\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.ALTA FORZADA\n6.SALIR\nElija una opcion: ", "Ups! Opcion invalida!!\n");
 		switch (opciones)
 		{
 			case 1:
 				system("cls");
-				if(addPassenger(&pasajero, TAM, pasajero->id, pasajero->name, pasajero->lastName, pasajero->price, pasajero->typePassenger, pasajero->flycode)==0)
+				if(pasajero[TAM].isEmpty==LIBRE)
 				{
+					addPassenger(pasajero, TAM, pasajero[TAM].id, pasajero[TAM].name, pasajero[TAM].lastName, pasajero[TAM].price, pasajero[TAM].typePassenger, pasajero[TAM].flycode, pasajero[TAM].statusFlight);
 					puts("Se dio de alta satisfacctoriamente!!");
 					contadorPasajeros++;
 				}
@@ -52,16 +59,28 @@ int main(void)
 			case 4:
 				if(contadorPasajeros >0)
 				{
+					sortPassenger(pasajero, TAM, 0);
 					printPassengers(pasajero, TAM);
 				}
 				else
 				{
 					puts("Haga al menos un alta para mostrar el informe");
 				}
-				system("pause");
+				system("cls");
 				break;
 			case 5:
-				printf("%d\n", contadorPasajeros);
+				if(banderaAlta==0)
+				{
+					AltaForzada(pasajero, listaForzada, TAM);
+					puts("Carga forzada realizada con exito");
+					contadorPasajeros += TAM_F;
+					banderaAlta=1;
+				}
+				else
+				{
+					puts("Ya se dio el alta!");
+				}
+				system("cls");
 				break;
 
 			case 6:

@@ -2,7 +2,7 @@
 
 
 static int GetInt(int*);
-static int GetFloat(int* );
+static int GetFloat(float* );
 static int esNumerica(char*);
 static int esFlotante(char*);
 
@@ -45,44 +45,39 @@ static int GetInt(int* pResultado)
 
 static int esFlotante(char* numero)
 {
-	int retorno = 1;
-	int banderaPunto=0;
-	int len;
-	len=strlen(numero);
+	int retorno = -1;
 	int i;
-	if(numero != NULL && len>0)
+	int len;
+	int punto=0;
+	len=strlen(numero);
+	if(numero != NULL && len > 0)
 	{
-		for(i=0; numero[i]!='\0' ;i++)
+		retorno = 1;
+		for(i=0;i<len && numero[i] != '\0' ;i++)
 		{
-			if(i==0 && (numero[i]== '+' || numero[i]=='-'))
+			if(i !=0 && (numero[i] == '+' || numero[i] == '-') && numero[i] == '.' && punto == 0)
 			{
+				punto = 1;
 				continue;
 			}
-			if(numero[i] < '0' || numero[i] > '9')
+			if(numero[i] > '9' || numero[i]  < '0')
 			{
-				if(banderaPunto==0 && i !=0 && numero[i]=='.')
-				{
-					banderaPunto=1;
-					continue;
-				}
-				else
-				{
-					retorno = 0;
-					break;
-				}
+				retorno = 0;
+				break;
 			}
 		}
 	}
+
 	return retorno;
 }
-static int GetFloat(int* pResultado)
+static int GetFloat(float* pResultado)
 {
 	int retorno = -1;
-	char bufferString[50];
-	if(pResultado != NULL && myGets(bufferString, sizeof(bufferString))== 0 && esFlotante(&bufferString))
+	char bufferFloat[50];
+	if(pResultado != NULL && myGets(bufferFloat, sizeof(bufferFloat))== 0 && esFlotante(bufferFloat))
 	{
 		retorno = 0;
-		*pResultado = atof(bufferString);
+		*pResultado = atof(bufferFloat);
 	}
 	return retorno;
 }
