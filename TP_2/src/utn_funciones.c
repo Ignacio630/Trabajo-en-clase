@@ -2,7 +2,7 @@
 
 
 static int GetInt(int*);
-static int GetFloat(int* );
+static int GetFloat(float* );
 static int esNumerica(char*);
 static int esFlotante(char*);
 
@@ -45,44 +45,39 @@ static int GetInt(int* pResultado)
 
 static int esFlotante(char* numero)
 {
-	int retorno = 1;
-	int contadorPunto=0;
-	int len;
-	len=strlen(numero);
+	int retorno = -1;
 	int i;
-	if(numero != NULL && len>0)
+	int len;
+	int punto=0;
+	len=strlen(numero);
+	if(numero != NULL && len > 0)
 	{
-		for(i=0; i < len && numero[i] != '\0';i++)
+		retorno = 1;
+		for(i=0;i<len && numero[i] != '\0' ;i++)
 		{
-			if(i== 0 && (numero[i]== '+' || numero[i]=='-'))
+			if(i !=0 && (numero[i] == '+' || numero[i] == '-') && numero[i] == '.' && punto == 0)
 			{
+				punto = 1;
 				continue;
 			}
-			if(numero[i] < '0' || numero[i] > '9')
+			if(numero[i] > '9' || numero[i]  < '0')
 			{
-				if(contadorPunto==0 && i !=0 && numero[i]=='.')
-				{
-					contadorPunto++;
-					continue;
-				}
-				else
-				{
-					retorno = 0;
-					break;
-				}
+				retorno = 0;
+				break;
 			}
 		}
 	}
+
 	return retorno;
 }
-static int GetFloat(int* pResultado)
+static int GetFloat(float* pResultado)
 {
 	int retorno = -1;
-	char bufferString[50];
-	if(pResultado != NULL && myGets(bufferString, sizeof(bufferString))== 0 && esFlotante(bufferString))
+	char bufferFloat[50];
+	if(pResultado != NULL && myGets(bufferFloat, sizeof(bufferFloat))== 0 && esFlotante(bufferFloat))
 	{
 		retorno = 0;
-		*pResultado = atof(bufferString);
+		*pResultado = atof(bufferFloat);
 	}
 	return retorno;
 }
@@ -110,24 +105,6 @@ int myGets(char* cadena, int len)
 
 	return retorno;
 }
-
-int utn_GetString(char* pResultado, int longitud, char* mensaje, char* mensajeError, int reintentos)
-{
-	int retorno;
-	char bufferStr[4096];
-	retorno = -1;
-	do
-	{
-		if(pResultado != NULL && myGets(bufferStr, sizeof(bufferStr)) == 0)
-		{
-
-		}
-	}while(reintentos >= 0);
-
-
-	return retorno;
-}
-
 int utn_GetEntero(int* pResultado, char* mensaje, char* MensajeError, int minimo, int maximo, int reintentos)
 {
 	int retorno;
@@ -148,11 +125,11 @@ int utn_GetEntero(int* pResultado, char* mensaje, char* MensajeError, int minimo
 
 	return retorno;
 }
-int utn_GetFlotante(int* pResultado, char* mensaje, char* MensajeError, int minimo, int maximo, int reintentos)
+float utn_GetFlotante(float* pResultado, char* mensaje, char* MensajeError, int minimo, int maximo, int reintentos)
 {
 	int retorno;
 	retorno = -1;
-	int bufferFloat;
+	float bufferFloat;
 	do{
 		printf("%s", mensaje);
 		if(GetFloat(&bufferFloat)== 0 && bufferFloat >= minimo && bufferFloat <= maximo )
@@ -161,7 +138,6 @@ int utn_GetFlotante(int* pResultado, char* mensaje, char* MensajeError, int mini
 			*pResultado = bufferFloat;
 			break;
 		}
-
 		printf("%s", MensajeError);
 		reintentos++;
 	}while(reintentos >= 0);
@@ -181,10 +157,10 @@ void PedirCadena(char cadena[],char mensaje[])
 		scanf("%s",cadena);
 	}
 }
-int PedirEntero(char numero[], char mensaje[], char mensajeError[])
+int PedirEntero(char* numero, char* mensaje, char* mensajeError)
 {
 	int retorno;
-	printf(mensaje);
+	puts(mensaje);
 	scanf("%s",numero);
 	while(!esNumerica(numero))
 	{
